@@ -1,4 +1,5 @@
 import asyncio
+import json
 import threading
 import customtkinter as ctk
 from bleak import BleakClient
@@ -9,8 +10,17 @@ import random
 import mss
 import numpy as np
 
+
+
 # --- 1.settings ---
-DEVICE_ADDRESS = "BE:27:A8:00:60:23"
+try:
+    with open('config.json', 'r') as f:
+        config = json.load(f)
+        DEVICE_ADDRESS = config.get("device_address")
+except FileNotFoundError:
+    DEVICE_ADDRESS = "PUT_YOUR_MAC_ADDRESS_HERE" 
+    print("Warning: config.json not found. Using default address.")
+
 WRITE_UUID = "0000fff3-0000-1000-8000-00805f9b34fb"
 APP_VERSION = "v3.0.0 Stable"
 DEV_NAME = "Dev by: EL-Haoudar Bilal"

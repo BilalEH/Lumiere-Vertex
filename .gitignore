@@ -3,4 +3,3 @@ build/
 dist/
 *.spec
 *.exe
-game.py
